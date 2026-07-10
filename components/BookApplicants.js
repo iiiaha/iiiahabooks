@@ -34,12 +34,12 @@ export default function BookApplicants({ book, sets }) {
   return (
     <div className="applybox">
       <p>
-        이 책 단권 신청 <strong>{direct}명</strong>
-        {covering.map((s) => (
-          <span key={s.title}>
-            {' '}· {s.title} 신청 <strong>{s.n}명</strong>
-          </span>
-        ))}
+        이 책 <strong>세트 신청 {setTotal}명</strong> / <strong>단권 신청 {direct}명</strong>
+        {covering.length > 0 && (
+          <>
+            <br />({covering.map((s) => `${s.title} ${s.n}명`).join(', ')})
+          </>
+        )}
       </p>
       <p style={{ marginTop: 8 }}>
         거래 우선순위는 <strong>① 세트 구매(전체 53권 세트 최우선) ② 단권 구매</strong> 순입니다.

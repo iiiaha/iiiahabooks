@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
   const { id } = await params;
   const books = await getBooks();
   const book = books.find((b) => b.id === id);
-  return { title: book ? `${book.title} — iiiaha books` : 'iiiaha books' };
+  return { title: book ? `${book.title} — 책장을 정리합니다.` : '책장을 정리합니다.' };
 }
 
 export default async function BookPage({ params }) {
@@ -28,7 +28,6 @@ export default async function BookPage({ params }) {
     ['글쓴이', book.author || '—'],
     ['출판사', book.publisher || '—'],
     ['페이지수', book.pages ? `${book.pages}쪽` : '—'],
-    ['정가', won(book.listPrice) ?? '—'],
     ['알라딘 중고시세', book.usedPriceNote || '—'],
     ['ISBN', book.isbn || '—'],
   ];
@@ -43,7 +42,12 @@ export default async function BookPage({ params }) {
         <div className="info">
           <div className="row">
             <span className="k">판매 가격</span>
-            <span className="saleprice">{won(book.salePrice) ?? '가격 미정'}</span>
+            <span className="saleprice">
+              {book.listPrice != null && (
+                <span className="strike">정가 {won(book.listPrice)}</span>
+              )}
+              {won(book.salePrice) ?? '가격 미정'}
+            </span>
           </div>
           <div className="row">
             <span className="k">책 상태</span>
@@ -67,12 +71,12 @@ export default async function BookPage({ params }) {
 
         <div className="btnrow">
           {book.kyoboUrl && (
-            <a className="btn ghost" href={book.kyoboUrl} target="_blank" rel="noreferrer">
+            <a className="textlink" href={book.kyoboUrl} target="_blank" rel="noreferrer">
               교보문고에서 자세히 보기 ↗
             </a>
           )}
           {book.aladinUsedUrl && (
-            <a className="btn ghost" href={book.aladinUsedUrl} target="_blank" rel="noreferrer">
+            <a className="textlink" href={book.aladinUsedUrl} target="_blank" rel="noreferrer">
               알라딘 중고 시세 확인 ↗
             </a>
           )}

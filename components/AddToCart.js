@@ -14,7 +14,7 @@ export default function AddToCart({ book, sets }) {
 
   return (
     <div>
-      <button className="btn" onClick={handle} disabled={sold}>
+      <button className="btn-link" onClick={handle} disabled={sold}>
         {sold ? (book.status === 'reserved' ? '예약중' : '판매완료') : '장바구니에 담기'}
       </button>
       {message && <p className="msg">{message}</p>}

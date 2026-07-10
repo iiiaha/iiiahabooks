@@ -41,12 +41,15 @@ function BookCard({ book, sets, counts }) {
       </div>
       <div className="meta">
         <div className="title">{book.title}</div>
-        <div className="price">{won(book.salePrice) ?? '가격 미정'}</div>
+        <div className="price">
+          {book.listPrice != null && <span className="strike">{won(book.listPrice)}</span>}
+          <span className="now">{won(book.salePrice) ?? '가격 미정'}</span>
+        </div>
         {(direct > 0 || viaSets > 0) && (
           <div className="applicants">
-            {direct > 0 && `단권 신청 ${direct}명`}
+            {viaSets > 0 && `세트 신청 ${viaSets}`}
             {direct > 0 && viaSets > 0 && ' · '}
-            {viaSets > 0 && `세트 우선 ${viaSets}명`}
+            {direct > 0 && `단권 신청 ${direct}`}
           </div>
         )}
       </div>
@@ -62,6 +65,9 @@ function SetCard({ set, sets, books, counts, onMessage }) {
   const prices = members.map((b) => b.salePrice);
   const sum = prices.every((p) => p != null)
     ? prices.reduce((a, p) => a + Number(p), 0)
+    : null;
+  const listSum = members.every((b) => b.listPrice != null)
+    ? members.reduce((a, b) => a + Number(b.listPrice), 0)
     : null;
   const discount =
     sum != null && set.price != null && sum > set.price
@@ -92,16 +98,31 @@ function SetCard({ set, sets, books, counts, onMessage }) {
         <p className="desc">{set.description}</p>
         {discount != null && (
           <p className="benefit">
-            개별 구매 합계 {won(sum)} → 세트 {won(set.price)} · <strong>{discount}% 할인</strong> ({won(sum - set.price)} 절약)
+            개별 구매 합계 {won(sum)} → 세트 {won(set.price)}
+            <br />
+            <strong>{discount}% 할인</strong> · {won(sum - set.price)} 절약
           </p>
         )}
-        <p className="price">{won(set.price) ?? '가격 미정'}</p>
+        <p className="price">
+          {listSum != null && (
+            <>
+              <span className="strike">정가 합계 {won(listSum)}</span>
+              <br />
+            </>
+          )}
+          <span className="now">{won(set.price) ?? '가격 미정'}</span>
+        </p>
         <p className="applicants">
           현재 신청 <strong>{applicants}명</strong>
-          {allSetApplicants > 0 && ` · 전체 53권 세트 신청 ${allSetApplicants}명에게 우선권이 있습니다`}
+          {allSetApplicants > 0 && (
+            <>
+              <br />
+              전체 53권 세트 신청 {allSetApplicants}명에게 우선권이 있습니다
+            </>
+          )}
         </p>
         <div className="btnrow">
-          <button className="btn" onClick={handleAdd} disabled={!allAvailable || !set.enabled}>
+          <button className="btn-link" onClick={handleAdd} disabled={!allAvailable || !set.enabled}>
             {allAvailable && set.enabled ? '장바구니에 담기' : '판매 불가 (일부 판매됨)'}
           </button>
         </div>
