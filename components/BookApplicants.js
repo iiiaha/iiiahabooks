@@ -34,7 +34,8 @@ export default function BookApplicants({ book, sets }) {
   return (
     <div className="applybox">
       <p>
-        이 책 <strong>세트 신청 {setTotal}명</strong> / <strong>단권 신청 {direct}명</strong>
+        이 책은 현재 <strong>{setTotal}분</strong>께서 세트 신청, <strong>{direct}분</strong>께서 단권
+        신청해주셨습니다.
         {covering.length > 0 && (
           <>
             <br />({covering.map((s) => `${s.title} ${s.n}명`).join(', ')})
