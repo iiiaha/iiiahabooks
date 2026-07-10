@@ -58,7 +58,7 @@
       "b18",
       "b19"
     ],
-    "price": null,
+    "price": 550000,
     "enabled": true
   },
   {
@@ -89,7 +89,7 @@
       "g23",
       "g24"
     ],
-    "price": null,
+    "price": 100000,
     "enabled": true
   },
   {
@@ -110,7 +110,7 @@
       "a41",
       "a42"
     ],
-    "price": null,
+    "price": 300000,
     "enabled": true
   }
 ]
