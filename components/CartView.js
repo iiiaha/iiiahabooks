@@ -12,8 +12,7 @@ export default function CartView({ books, sets, config }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [memo, setMemo] = useState('');
-  const [hakdong, setHakdong] = useState(''); // 'yes' | 'no'
-  const [area, setArea] = useState('');
+  const [hakdong, setHakdong] = useState(''); // 'yes'(직거래) | 'no'(택배)
   const [days, setDays] = useState([]);
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState(null); // {ok, message}
@@ -48,11 +47,7 @@ export default function CartView({ books, sets, config }) {
   const submit = async (e) => {
     e.preventDefault();
     if (hakdong === '') {
-      setResult({ ok: false, message: '학동역 인근 직거래 가능 여부를 선택해 주세요.' });
-      return;
-    }
-    if (hakdong === 'no' && !area.trim()) {
-      setResult({ ok: false, message: '거래 희망 지역을 입력해 주세요.' });
+      setResult({ ok: false, message: '거래방식을 선택해 주세요.' });
       return;
     }
     if (days.length === 0) {
@@ -70,7 +65,7 @@ export default function CartView({ books, sets, config }) {
           phone,
           memo,
           hakdong: hakdong === 'yes',
-          area: hakdong === 'no' ? area : '',
+          area: '',
           days,
           items: cart,
           website: '',
@@ -186,11 +181,11 @@ export default function CartView({ books, sets, config }) {
                     </div>
                   </div>
                   <div className="field">
-                    <label>학동역(7호선) 인근 직거래가 가능하신가요? *</label>
+                    <label>거래방식 *</label>
                     <div className="chips">
                       {[
-                        ['yes', '가능'],
-                        ['no', '불가능'],
+                        ['yes', '학동역(7호선) 직거래'],
+                        ['no', '택배 거래'],
                       ].map(([v, label]) => (
                         <label key={v} className={`chip${hakdong === v ? ' on' : ''}`}>
                           <input
@@ -204,22 +199,13 @@ export default function CartView({ books, sets, config }) {
                         </label>
                       ))}
                     </div>
-                  </div>
-                  {hakdong === 'no' && (
-                    <div className="field">
-                      <label htmlFor="area">거래 희망 지역 *</label>
-                      <input
-                        id="area"
-                        value={area}
-                        onChange={(e) => setArea(e.target.value)}
-                        maxLength={50}
-                        placeholder="예: 2호선 강남역 인근"
-                      />
+                    {hakdong === 'no' && (
                       <p className="hint" style={{ marginTop: 6, marginBottom: 0 }}>
-                        신청자가 여러 명일 경우 학동역 인근 직거래 가능한 분께 우선 판매됩니다.
+                        <strong>세트 구매</strong> 시 택배비는 판매자가 부담합니다.{' '}
+                        <strong>단권 구매</strong> 시에는 착불(구매자 부담)로 발송됩니다.
                       </p>
-                    </div>
-                  )}
+                    )}
+                  </div>
                   <div className="field">
                     <label>거래 가능 요일 * (7/20~7/26 중 선택)</label>
                     <div className="chips">

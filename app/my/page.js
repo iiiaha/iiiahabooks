@@ -6,7 +6,6 @@ import { DAY_OPTIONS } from '@/lib/constants';
 
 function EditForm({ app, name, phone, onDone, onCancel }) {
   const [hakdong, setHakdong] = useState(app.hakdong ? 'yes' : 'no');
-  const [area, setArea] = useState(app.area || '');
   const [days, setDays] = useState(app.days || []);
   const [memo, setMemo] = useState(app.memo || '');
   const [saving, setSaving] = useState(false);
@@ -16,7 +15,6 @@ function EditForm({ app, name, phone, onDone, onCancel }) {
     setDays((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
 
   const save = async () => {
-    if (hakdong === 'no' && !area.trim()) return setErr('거래 희망 지역을 입력해 주세요.');
     if (days.length === 0) return setErr('거래 가능 요일을 하나 이상 선택해 주세요.');
     setSaving(true);
     setErr('');
@@ -29,7 +27,7 @@ function EditForm({ app, name, phone, onDone, onCancel }) {
         phone,
         id: app.id,
         hakdong: hakdong === 'yes',
-        area: hakdong === 'no' ? area : '',
+        area: '',
         days,
         memo,
       }),
@@ -43,22 +41,24 @@ function EditForm({ app, name, phone, onDone, onCancel }) {
   return (
     <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid #ebebeb' }}>
       <div className="field">
-        <label>학동역(7호선) 인근 직거래 가능 여부</label>
+        <label>거래방식</label>
         <div className="choicerow">
           <label>
-            <input type="radio" checked={hakdong === 'yes'} onChange={() => setHakdong('yes')} /> 가능
+            <input type="radio" checked={hakdong === 'yes'} onChange={() => setHakdong('yes')} />{' '}
+            학동역(7호선) 직거래
           </label>
           <label>
-            <input type="radio" checked={hakdong === 'no'} onChange={() => setHakdong('no')} /> 불가능
+            <input type="radio" checked={hakdong === 'no'} onChange={() => setHakdong('no')} /> 택배
+            거래
           </label>
         </div>
+        {hakdong === 'no' && (
+          <p className="hint" style={{ marginTop: 6, marginBottom: 0 }}>
+            <strong>세트 구매</strong> 시 택배비는 판매자가 부담합니다. <strong>단권 구매</strong>{' '}
+            시에는 착불(구매자 부담)로 발송됩니다.
+          </p>
+        )}
       </div>
-      {hakdong === 'no' && (
-        <div className="field">
-          <label>거래 희망 지역</label>
-          <input value={area} onChange={(e) => setArea(e.target.value)} maxLength={50} />
-        </div>
-      )}
       <div className="field">
         <label>거래 가능 요일</label>
         <div className="choicerow">
@@ -183,7 +183,7 @@ export default function MyPage() {
                   ))}
                 </ul>
                 <div style={{ marginTop: 10, fontSize: 12, color: '#8e8e8e' }}>
-                  학동역 직거래: {a.hakdong ? '가능' : `불가 · 희망 지역: ${a.area || '-'}`}
+                  거래방식: {a.hakdong ? '학동역(7호선) 직거래' : '택배 거래'}
                   {a.days?.length > 0 && <> · 가능 요일: {a.days.join(', ')}</>}
                   {a.memo && (
                     <>

@@ -29,9 +29,9 @@ export async function POST(request) {
   if (memo != null && (typeof memo !== 'string' || memo.length > 500))
     return Response.json({ error: '메모가 너무 깁니다.' }, { status: 400 });
   if (typeof hakdong !== 'boolean')
-    return Response.json({ error: '학동역 인근 직거래 가능 여부를 선택해 주세요.' }, { status: 400 });
-  if (!hakdong && (typeof area !== 'string' || !area.trim() || area.length > 50))
-    return Response.json({ error: '거래 희망 지역을 입력해 주세요.' }, { status: 400 });
+    return Response.json({ error: '거래방식을 선택해 주세요.' }, { status: 400 });
+  if (area != null && (typeof area !== 'string' || area.length > 50))
+    return Response.json({ error: '잘못된 요청입니다.' }, { status: 400 });
   if (!Array.isArray(days) || days.length === 0 || days.some((d) => !DAY_OPTIONS.includes(d)))
     return Response.json({ error: '거래 가능 요일(7/20~7/26)을 하나 이상 선택해 주세요.' }, { status: 400 });
 
@@ -84,7 +84,7 @@ export async function POST(request) {
     phone: phone.trim(),
     memo: (memo || '').trim(),
     hakdong,
-    area: hakdong ? '' : area.trim(),
+    area: '',
     days: DAY_OPTIONS.filter((d) => days.includes(d)),
     items: snapshot,
     total,
