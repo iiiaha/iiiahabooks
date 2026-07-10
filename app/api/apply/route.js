@@ -1,11 +1,11 @@
 import { readJson, mutateJson } from '@/lib/store';
 import { deadlinePassed } from '@/lib/format';
+import { DAY_OPTIONS } from '@/lib/constants';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const PHONE_RE = /^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$/;
-const DAY_OPTIONS = ['7/20(월)', '7/21(화)', '7/22(수)', '7/23(목)', '7/24(금)', '7/25(토)', '7/26(일)'];
 
 export async function POST(request) {
   let body;

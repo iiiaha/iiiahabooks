@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Countdown from '@/components/Countdown';
 import { addSet } from '@/lib/cart';
 import { won, deadlineLabel } from '@/lib/format';
+import { OPENCHAT_URL } from '@/lib/constants';
 
 const CATEGORIES = [
   { key: 'garm', label: 'GARM 매거진' },
@@ -174,6 +175,11 @@ export default function Shop({ books, sets, config }) {
               <Countdown deadline={config.deadline} />
             </>
           )}
+          <p className="notice">
+            <a className="textlink" href={OPENCHAT_URL} target="_blank" rel="noreferrer">
+              오픈채팅으로 문의하기 ↗
+            </a>
+          </p>
           {message && <p className="msg">{message}</p>}
         </div>
       </aside>

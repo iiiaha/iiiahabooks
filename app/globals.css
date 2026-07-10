@@ -653,7 +653,7 @@ img {
   border-color: var(--ink);
 }
 
-.admin .apps .appcard {
+.appcard {
   border: 1px solid var(--pencil);
   border-radius: 0;
   padding: 16px 20px;
@@ -661,12 +661,12 @@ img {
   font-size: 13px;
 }
 
-.admin .apps .appcard .who {
+.appcard .who {
   font-size: 14px;
   font-weight: 500;
 }
 
-.admin .apps .appcard ul {
+.appcard ul {
   margin: 10px 0 0 18px;
   color: var(--smoke);
 }

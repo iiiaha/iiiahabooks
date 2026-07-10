@@ -39,6 +39,17 @@ export default function AdminPage() {
     }
   };
 
+  const deleteApp = async (id) => {
+    if (!window.confirm('이 신청을 삭제할까요? 되돌릴 수 없습니다.')) return;
+    const res = await fetch('/api/admin/applications', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    if (res.ok) loadApps();
+    else setMsg('삭제에 실패했습니다.');
+  };
+
   useEffect(() => {
     loadData();
   }, []);
@@ -362,6 +373,11 @@ export default function AdminPage() {
                   ))}
                 </ul>
                 {a.memo && <p style={{ marginTop: 10 }}>메모: {a.memo}</p>}
+                <div className="btnrow" style={{ marginTop: 12 }}>
+                  <button className="textlink" style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => deleteApp(a.id)}>
+                    신청 삭제
+                  </button>
+                </div>
               </div>
             ))
           )}

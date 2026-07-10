@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getCart, removeItem, clearCart } from '@/lib/cart';
 import { won, deadlinePassed, deadlineLabel } from '@/lib/format';
+import { DAY_OPTIONS } from '@/lib/constants';
 
 export default function CartView({ books, sets, config }) {
   const [cart, setCartState] = useState([]);
@@ -16,8 +17,6 @@ export default function CartView({ books, sets, config }) {
   const [days, setDays] = useState([]);
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState(null); // {ok, message}
-
-  const DAY_OPTIONS = ['7/20(월)', '7/21(화)', '7/22(수)', '7/23(목)', '7/24(금)', '7/25(토)', '7/26(일)'];
 
   const toggleDay = (d) =>
     setDays((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));

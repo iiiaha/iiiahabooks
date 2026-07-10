@@ -26,6 +26,7 @@ export default function Header() {
       <nav>
         <Link href="/">도서</Link>
         <Link href="/cart">장바구니{count > 0 ? ` ${count}` : ''}</Link>
+        <Link href="/my">신청확인</Link>
       </nav>
     </header>
   );
