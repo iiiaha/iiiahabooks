@@ -35,6 +35,14 @@ function BookCard({ book }) {
   );
 }
 
+// 권수에 맞는 열 수 — 53권=9열(6행), 22권=8열(3행), 19권=7열(3행), 12권=6열(2행)
+function coversCols(n) {
+  if (n >= 40) return 9;
+  if (n >= 20) return 8;
+  if (n >= 16) return 7;
+  return 6;
+}
+
 function SetCard({ set, sets, books, onMessage }) {
   const members = set.bookIds
     .map((id) => books.find((b) => b.id === id))
@@ -61,14 +69,10 @@ function SetCard({ set, sets, books, onMessage }) {
 
   return (
     <div className="setcard">
-      <div className="covers">
-        {/* 세트 전체에서 고르게 뽑은 8권 — 전체 세트는 매거진·애뉴얼·단행본이 섞여 보인다 */}
-        {members
-          .filter((_, i) => i % Math.max(1, Math.floor(members.length / 8)) === 0)
-          .slice(0, 8)
-          .map((b) => (
-            <img key={b.id} src={b.thumb} alt={b.title} loading="lazy" />
-          ))}
+      <div className="covers" style={{ gridTemplateColumns: `repeat(${coversCols(members.length)}, 1fr)` }}>
+        {members.map((b) => (
+          <img key={b.id} src={b.thumb} alt={b.title} loading="lazy" />
+        ))}
       </div>
       <div>
         <h3>{set.title}</h3>
