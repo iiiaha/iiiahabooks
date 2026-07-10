@@ -93,7 +93,12 @@ img {
 
 .home aside {
   position: sticky;
-  top: 92px; /* 고정 헤더 높이 + 여백 */
+  position: -webkit-sticky;
+  /* 고정 헤더 높이(62px) + 홈 상단 여백(40px) = 시작 위치와 동일하게 → 스크롤해도 전혀 안 움직임 */
+  top: 102px;
+  align-self: start;
+  max-height: calc(100vh - 102px);
+  overflow-y: auto;
 }
 
 .bio {
