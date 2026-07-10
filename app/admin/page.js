@@ -179,20 +179,21 @@ export default function AdminPage() {
                       }
                     />
                   </td>
-                  <td>
-                    <select
-                      value={b.condition ?? ''}
-                      onChange={(e) =>
-                        setBookField(b.id, 'condition', e.target.value === '' ? null : Number(e.target.value))
-                      }
-                    >
-                      <option value="">미입력</option>
-                      {[5, 4, 3, 2, 1].map((n) => (
-                        <option key={n} value={n}>
-                          {'★'.repeat(n)} ({n})
-                        </option>
-                      ))}
-                    </select>
+                  <td style={{ whiteSpace: 'nowrap' }}>
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <button
+                        key={n}
+                        type="button"
+                        className="starbtn"
+                        title={b.condition === n ? '클릭하면 지워집니다' : `${n}점`}
+                        style={{ color: b.condition >= n ? '#000' : '#ccc' }}
+                        onClick={() =>
+                          setBookField(b.id, 'condition', b.condition === n ? null : n)
+                        }
+                      >
+                        {b.condition >= n ? '★' : '☆'}
+                      </button>
+                    ))}
                   </td>
                   <td>
                     <select

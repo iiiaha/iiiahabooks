@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import Stars from '@/components/Stars';
 import { addSet } from '@/lib/cart';
 import { won, deadlineLabel } from '@/lib/format';
 
@@ -23,9 +22,6 @@ function BookCard({ book }) {
       <div className="meta">
         <div className="title">{book.title}</div>
         <div className="price">{won(book.salePrice) ?? '가격 미정'}</div>
-        <div className="stars">
-          <Stars value={book.condition} />
-        </div>
       </div>
     </Link>
   );
