@@ -29,5 +29,27 @@
       }
     ],
     "total": 380000
+  },
+  {
+    "id": "app-1783694710489-f6rrye",
+    "createdAt": "2026-07-10T14:45:10.489Z",
+    "name": "김소연",
+    "phone": "01072094210",
+    "memo": "",
+    "hakdong": true,
+    "area": "",
+    "days": [
+      "7/20(월)"
+    ],
+    "items": [
+      {
+        "type": "set",
+        "id": "set-books",
+        "title": "단행본 전체 세트 (19권)",
+        "price": 190000,
+        "count": 19
+      }
+    ],
+    "total": 190000
   }
 ]
