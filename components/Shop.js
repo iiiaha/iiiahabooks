@@ -100,7 +100,7 @@ function SetCard({ set, sets, books, counts, onMessage }) {
         <p className="price">
           {listSum != null && (
             <>
-              <span className="strike">정가 합계 {won(listSum)}</span>
+              <span className="listsum">정가 합계 {won(listSum)}</span>
               <br />
             </>
           )}

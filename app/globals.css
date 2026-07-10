@@ -265,8 +265,10 @@ img {
   font-weight: 500;
 }
 
-.setcard .price .strike {
+.setcard .price .listsum {
   font-size: 12px;
+  font-weight: 400;
+  color: var(--graphite);
 }
 
 .setcard .discountnote {
