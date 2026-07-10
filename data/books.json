@@ -14,8 +14,8 @@
     "note": "2017년 발행",
     "image": "/images/books/g01.jpg",
     "thumb": "/images/books/g01-thumb.jpg",
-    "salePrice": 10000,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -33,8 +33,8 @@
     "note": "2017년 발행",
     "image": "/images/books/g02.jpg",
     "thumb": "/images/books/g02-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -52,8 +52,8 @@
     "note": "2017년 발행",
     "image": "/images/books/g03.jpg",
     "thumb": "/images/books/g03-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -71,8 +71,8 @@
     "note": "2018년 발행",
     "image": "/images/books/g04.jpg",
     "thumb": "/images/books/g04-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -90,8 +90,8 @@
     "note": "2018년 발행",
     "image": "/images/books/g05.jpg",
     "thumb": "/images/books/g05-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -109,8 +109,8 @@
     "note": "2018년 발행",
     "image": "/images/books/g06.jpg",
     "thumb": "/images/books/g06-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -128,8 +128,8 @@
     "note": "2018년 발행",
     "image": "/images/books/g07.jpg",
     "thumb": "/images/books/g07-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -147,8 +147,8 @@
     "note": "2018년 발행",
     "image": "/images/books/g08.jpg",
     "thumb": "/images/books/g08-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -166,8 +166,8 @@
     "note": "2018년 발행",
     "image": "/images/books/g09.jpg",
     "thumb": "/images/books/g09-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -185,8 +185,8 @@
     "note": "2019년 발행",
     "image": "/images/books/g10.jpg",
     "thumb": "/images/books/g10-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -204,8 +204,8 @@
     "note": "2019년 발행",
     "image": "/images/books/g11.jpg",
     "thumb": "/images/books/g11-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -223,8 +223,8 @@
     "note": "2019년 발행",
     "image": "/images/books/g12.jpg",
     "thumb": "/images/books/g12-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7000,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -242,8 +242,8 @@
     "note": "2020년 발행",
     "image": "/images/books/g13.jpg",
     "thumb": "/images/books/g13-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -261,8 +261,8 @@
     "note": "2020년 발행",
     "image": "/images/books/g14.jpg",
     "thumb": "/images/books/g14-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -280,8 +280,8 @@
     "note": "2020년 발행",
     "image": "/images/books/g15.jpg",
     "thumb": "/images/books/g15-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -299,8 +299,8 @@
     "note": "2021년 발행",
     "image": "/images/books/g16.jpg",
     "thumb": "/images/books/g16-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 14900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -318,8 +318,8 @@
     "note": "2021년 발행",
     "image": "/images/books/g17.jpg",
     "thumb": "/images/books/g17-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 9900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -337,8 +337,8 @@
     "note": "2022년 발행 (WOOD²)",
     "image": "/images/books/g18.jpg",
     "thumb": "/images/books/g18-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 10900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -356,8 +356,8 @@
     "note": "2022년 발행",
     "image": "/images/books/g19.jpg",
     "thumb": "/images/books/g19-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 12900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -375,8 +375,8 @@
     "note": "2024년 발행",
     "image": "/images/books/g22.jpg",
     "thumb": "/images/books/g22-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 14900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -394,8 +394,8 @@
     "note": "2024년 발행",
     "image": "/images/books/g23.jpg",
     "thumb": "/images/books/g23-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 14900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -413,8 +413,8 @@
     "note": "2025년 발행",
     "image": "/images/books/g24.jpg",
     "thumb": "/images/books/g24-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 14500,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -432,8 +432,8 @@
     "note": "절판",
     "image": "/images/books/a29.jpg",
     "thumb": "/images/books/a29-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 34900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -451,8 +451,8 @@
     "note": "절판",
     "image": "/images/books/a30.jpg",
     "thumb": "/images/books/a30-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 34900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -470,8 +470,8 @@
     "note": "절판",
     "image": "/images/books/a31.jpg",
     "thumb": "/images/books/a31-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 34900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -489,8 +489,8 @@
     "note": "절판",
     "image": "/images/books/a34.jpg",
     "thumb": "/images/books/a34-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 34900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -508,8 +508,8 @@
     "note": "절판",
     "image": "/images/books/a35.jpg",
     "thumb": "/images/books/a35-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 42900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -527,8 +527,8 @@
     "note": "절판",
     "image": "/images/books/a36.jpg",
     "thumb": "/images/books/a36-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 42900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -546,8 +546,8 @@
     "note": "절판",
     "image": "/images/books/a37.jpg",
     "thumb": "/images/books/a37-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 42900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -565,8 +565,8 @@
     "note": "절판",
     "image": "/images/books/a38.jpg",
     "thumb": "/images/books/a38-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 42900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -584,8 +584,8 @@
     "note": "",
     "image": "/images/books/a39.jpg",
     "thumb": "/images/books/a39-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 49900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -603,8 +603,8 @@
     "note": "",
     "image": "/images/books/a40.jpg",
     "thumb": "/images/books/a40-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 49900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -622,8 +622,8 @@
     "note": "교보문고 미취급",
     "image": "/images/books/a41.jpg",
     "thumb": "/images/books/a41-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 49900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -641,8 +641,8 @@
     "note": "",
     "image": "/images/books/a42.jpg",
     "thumb": "/images/books/a42-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 49900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -660,8 +660,8 @@
     "note": "좋은집 시리즈 12",
     "image": "/images/books/b01.jpg",
     "thumb": "/images/books/b01-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 9900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -679,8 +679,8 @@
     "note": "신간 품절 — 중고 위주 유통",
     "image": "/images/books/b02.jpg",
     "thumb": "/images/books/b02-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 9900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -698,8 +698,8 @@
     "note": "",
     "image": "/images/books/b03.jpg",
     "thumb": "/images/books/b03-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 9900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -717,8 +717,8 @@
     "note": "",
     "image": "/images/books/b04.jpg",
     "thumb": "/images/books/b04-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 9900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -736,8 +736,8 @@
     "note": "절판 — 중고만 유통",
     "image": "/images/books/b05.jpg",
     "thumb": "/images/books/b05-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 3900,
+    "condition": 2,
     "status": "available"
   },
   {
@@ -755,8 +755,8 @@
     "note": "양장본 / 중고 시세 강세",
     "image": "/images/books/b06.jpg",
     "thumb": "/images/books/b06-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 19900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -774,8 +774,8 @@
     "note": "잡스 시리즈 3 / 신간 품절",
     "image": "/images/books/b07.jpg",
     "thumb": "/images/books/b07-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 8900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -793,8 +793,8 @@
     "note": "2025년 출간 신간",
     "image": "/images/books/b08.jpg",
     "thumb": "/images/books/b08-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 8900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -812,8 +812,8 @@
     "note": "해부도감 시리즈",
     "image": "/images/books/b09.jpg",
     "thumb": "/images/books/b09-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 8900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -831,8 +831,8 @@
     "note": "해부도감 시리즈",
     "image": "/images/books/b10.jpg",
     "thumb": "/images/books/b10-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 5900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -850,8 +850,8 @@
     "note": "해부도감 시리즈",
     "image": "/images/books/b11.jpg",
     "thumb": "/images/books/b11-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 6900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -869,8 +869,8 @@
     "note": "양장본",
     "image": "/images/books/b12.jpg",
     "thumb": "/images/books/b12-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 7900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -888,8 +888,8 @@
     "note": "절판 — 중고 시세 높음",
     "image": "/images/books/b13.jpg",
     "thumb": "/images/books/b13-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 12900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -907,8 +907,8 @@
     "note": "",
     "image": "/images/books/b14.jpg",
     "thumb": "/images/books/b14-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 8900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -926,8 +926,8 @@
     "note": "",
     "image": "/images/books/b15.jpg",
     "thumb": "/images/books/b15-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 8500,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -945,8 +945,8 @@
     "note": "2024년 텀블벅 펀딩 출간 — 서점 미유통",
     "image": "/images/books/b16.jpg",
     "thumb": "/images/books/b16-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 19900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -964,8 +964,8 @@
     "note": "양장본",
     "image": "/images/books/b17.jpg",
     "thumb": "/images/books/b17-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 19900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -983,8 +983,8 @@
     "note": "신간 품절 — 중고 위주 유통",
     "image": "/images/books/b18.jpg",
     "thumb": "/images/books/b18-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 9900,
+    "condition": 4,
     "status": "available"
   },
   {
@@ -1002,8 +1002,8 @@
     "note": "주택공간 디자인 시리즈",
     "image": "/images/books/b19.jpg",
     "thumb": "/images/books/b19-thumb.jpg",
-    "salePrice": null,
-    "condition": null,
+    "salePrice": 12900,
+    "condition": 4,
     "status": "available"
   }
 ]
