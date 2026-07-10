@@ -40,14 +40,15 @@ export default async function BookPage({ params }) {
       <div>
         <h1>{book.title}</h1>
         <div className="info">
+          {book.listPrice != null && (
+            <div className="row">
+              <span className="k">정가</span>
+              <span>{won(book.listPrice)}</span>
+            </div>
+          )}
           <div className="row">
-            <span className="k">판매 가격</span>
-            <span className="saleprice">
-              {book.listPrice != null && (
-                <span className="strike">정가 {won(book.listPrice)}</span>
-              )}
-              {won(book.salePrice) ?? '가격 미정'}
-            </span>
+            <span className="k">중고판매가</span>
+            <span className="saleprice">{won(book.salePrice) ?? '가격 미정'}</span>
           </div>
           <div className="row">
             <span className="k">책 상태</span>
