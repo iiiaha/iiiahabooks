@@ -56,9 +56,9 @@ img {
   z-index: 10;
   background: var(--paper);
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  padding: 20px 0;
+  height: 64px; /* 고정 높이 — 아래 aside top 계산과 정확히 맞물림 */
   border-bottom: 1px solid var(--pencil);
 }
 
@@ -94,10 +94,10 @@ img {
 .home aside {
   position: sticky;
   position: -webkit-sticky;
-  /* 고정 헤더 높이(62px) + 홈 상단 여백(40px) = 시작 위치와 동일하게 → 스크롤해도 전혀 안 움직임 */
-  top: 102px;
+  /* 헤더 64px + 홈 상단 여백 40px = 시작 위치와 동일 → 스크롤해도 전혀 안 움직임 */
+  top: 104px;
   align-self: start;
-  max-height: calc(100vh - 102px);
+  max-height: calc(100vh - 104px);
   overflow-y: auto;
 }
 
