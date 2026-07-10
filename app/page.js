@@ -1,8 +1,7 @@
-import books from '@/data/books.json';
-import sets from '@/data/sets.json';
-import config from '@/data/config.json';
+import { getBooks, getSets, getConfig } from '@/lib/data';
 import Shop from '@/components/Shop';
 
-export default function Home() {
+export default async function Home() {
+  const [books, sets, config] = await Promise.all([getBooks(), getSets(), getConfig()]);
   return <Shop books={books} sets={sets} config={config} />;
 }

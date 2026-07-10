@@ -75,7 +75,7 @@ export default function AdminPage() {
       const json = await res.json();
       setMsg(
         res.ok
-          ? `${label} 저장 완료. 사이트 반영까지 1~2분 걸립니다 (자동 재배포).`
+          ? `${label} 저장 완료. 사이트에 바로 반영됩니다 (새로고침으로 확인).`
           : json.error || '저장 실패'
       );
     } catch {

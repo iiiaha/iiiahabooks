@@ -1,10 +1,9 @@
-import books from '@/data/books.json';
-import sets from '@/data/sets.json';
-import config from '@/data/config.json';
+import { getBooks, getSets, getConfig } from '@/lib/data';
 import CartView from '@/components/CartView';
 
 export const metadata = { title: '장바구니 — iiiaha books' };
 
-export default function CartPage() {
+export default async function CartPage() {
+  const [books, sets, config] = await Promise.all([getBooks(), getSets(), getConfig()]);
   return <CartView books={books} sets={sets} config={config} />;
 }

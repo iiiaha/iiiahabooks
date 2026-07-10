@@ -1,23 +1,25 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import books from '@/data/books.json';
-import sets from '@/data/sets.json';
+import { getBooks, getSets } from '@/lib/data';
 import Stars from '@/components/Stars';
 import AddToCart from '@/components/AddToCart';
 import { won } from '@/lib/format';
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const books = await getBooks();
   return books.map((b) => ({ id: b.id }));
 }
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
+  const books = await getBooks();
   const book = books.find((b) => b.id === id);
   return { title: book ? `${book.title} — iiiaha books` : 'iiiaha books' };
 }
 
 export default async function BookPage({ params }) {
   const { id } = await params;
+  const [books, sets] = await Promise.all([getBooks(), getSets()]);
   const book = books.find((b) => b.id === id);
   if (!book) notFound();
 

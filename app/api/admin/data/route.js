@@ -1,3 +1,4 @@
+import { revalidateTag } from 'next/cache';
 import { readJson, writeJson } from '@/lib/store';
 import { isAuthed, unauthorized } from '@/lib/auth';
 
@@ -41,5 +42,6 @@ export async function POST(request) {
     console.error(e);
     return Response.json({ error: '저장에 실패했습니다. GITHUB_TOKEN 설정을 확인하세요.' }, { status: 500 });
   }
+  if (saved.length > 0) revalidateTag('sitedata'); // 캐시 즉시 무효화 → 재배포 없이 반영
   return Response.json({ ok: true, saved });
 }
