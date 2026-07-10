@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Countdown from '@/components/Countdown';
-import VisitorStats from '@/components/VisitorStats';
 import { addSet } from '@/lib/cart';
 import { won, deadlineLabel } from '@/lib/format';
 import { OPENCHAT_URL } from '@/lib/constants';
@@ -183,7 +182,6 @@ export default function Shop({ books, sets, config }) {
           </p>
           {message && <p className="msg">{message}</p>}
         </div>
-        <VisitorStats />
       </aside>
 
       <main>

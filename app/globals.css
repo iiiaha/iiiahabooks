@@ -90,17 +90,6 @@ img {
 .home aside {
   position: sticky;
   top: 40px;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 80px);
-}
-
-.visitstamp {
-  margin-top: auto;
-  padding-top: 24px;
-  font-size: 12px;
-  color: var(--graphite);
-  line-height: 1.6;
 }
 
 .bio {
@@ -757,10 +746,6 @@ img {
   }
   .home aside {
     position: static;
-    height: auto;
-  }
-  .visitstamp {
-    margin-top: 24px;
   }
   .detail {
     grid-template-columns: 1fr;
