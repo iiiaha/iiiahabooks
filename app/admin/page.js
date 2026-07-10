@@ -142,6 +142,7 @@ export default function AdminPage() {
                 <th>분류</th>
                 <th>제목</th>
                 <th>정가</th>
+                <th>알라딘 중고시세</th>
                 <th>판매가격(원)</th>
                 <th>상태(별)</th>
                 <th>판매상태</th>
@@ -153,6 +154,20 @@ export default function AdminPage() {
                   <td>{CAT_LABEL[b.category]}</td>
                   <td>{b.title}</td>
                   <td>{won(b.listPrice) ?? '—'}</td>
+                  <td>
+                    {b.aladinUsedUrl ? (
+                      <a
+                        href={b.aladinUsedUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: 'underline' }}
+                      >
+                        {b.usedPriceNote || '알라딘 보기'}
+                      </a>
+                    ) : (
+                      b.usedPriceNote || '—'
+                    )}
+                  </td>
                   <td>
                     <input
                       type="number"
