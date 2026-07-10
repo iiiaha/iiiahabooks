@@ -51,6 +51,10 @@ img {
 
 /* ── 헤더 ── */
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -89,7 +93,7 @@ img {
 
 .home aside {
   position: sticky;
-  top: 40px;
+  top: 92px; /* 고정 헤더 높이 + 여백 */
 }
 
 .bio {
