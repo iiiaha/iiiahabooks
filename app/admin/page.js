@@ -14,6 +14,7 @@ export default function AdminPage() {
   const [sets, setSets] = useState([]);
   const [config, setConfig] = useState(null);
   const [apps, setApps] = useState([]);
+  const [visits, setVisits] = useState(null);
   const [tab, setTab] = useState('books');
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState('');
@@ -54,8 +55,14 @@ export default function AdminPage() {
     loadData();
   }, []);
 
+  const loadVisits = async () => {
+    const res = await fetch('/api/visit');
+    if (res.ok) setVisits(await res.json());
+  };
+
   useEffect(() => {
     if (authed && tab === 'apps') loadApps();
+    if (authed && tab === 'visits') loadVisits();
   }, [authed, tab]);
 
   const login = async (e) => {
@@ -136,6 +143,7 @@ export default function AdminPage() {
           ['sets', '세트 관리'],
           ['config', '공지·마감 설정'],
           ['apps', `신청 목록${apps.length ? ` (${apps.length})` : ''}`],
+          ['visits', '방문자'],
         ].map(([k, label]) => (
           <button key={k} className={tab === k ? 'active' : ''} onClick={() => setTab(k)}>
             {label}
@@ -337,6 +345,44 @@ export default function AdminPage() {
               {saving ? '저장 중…' : '설정 저장'}
             </button>
           </div>
+        </div>
+      )}
+
+      {tab === 'visits' && (
+        <div style={{ maxWidth: 420 }}>
+          <div className="btnrow" style={{ marginTop: 0, marginBottom: 20 }}>
+            <button className="btn ghost" onClick={loadVisits}>
+              새로고침
+            </button>
+          </div>
+          {!visits ? (
+            <p className="empty">불러오는 중…</p>
+          ) : (
+            <>
+              <p style={{ fontSize: 15, marginBottom: 20 }}>
+                누적 방문자 <strong>{Number(visits.total).toLocaleString('ko-KR')}명</strong> · 오늘
+                방문자 <strong>{Number(visits.today).toLocaleString('ko-KR')}명</strong>
+              </p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>날짜</th>
+                    <th>방문자</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(visits.days)
+                    .sort((a, b) => b[0].localeCompare(a[0]))
+                    .map(([day, n]) => (
+                      <tr key={day}>
+                        <td>{day}</td>
+                        <td>{Number(n).toLocaleString('ko-KR')}명</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </>
+          )}
         </div>
       )}
 

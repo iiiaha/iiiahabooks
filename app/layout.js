@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
+import VisitTracker from '@/components/VisitTracker';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <body className={inter.className}>
+        <VisitTracker />
         <div className="wrap">
           <Header />
           {children}
