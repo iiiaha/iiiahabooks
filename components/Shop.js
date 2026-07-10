@@ -166,8 +166,8 @@ export default function Shop({ books, sets, config }) {
           {config.intro}
           {config.notice && <p className="notice">{config.notice}</p>}
           <p className="notice">
-            거래 우선순위: <strong>① 세트 구매</strong> (전체 53권 세트 최우선) <strong>② 단권 구매</strong>.
-            신청자가 여러 명이면 학동역(7호선) 인근 직거래 가능한 분께 우선 판매합니다.
+            거래 우선순위: <strong>① 세트 구매</strong>(전체 53권 세트 최우선){' '}
+            <strong>② 학동역(7호선) 인근 직거래 가능한 분</strong>
           </p>
           {config.deadline && (
             <>

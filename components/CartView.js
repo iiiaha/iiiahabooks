@@ -151,8 +151,8 @@ export default function CartView({ books, sets, config }) {
                   신청은 구매 확정이 아닙니다. 신청 기간 마감 후 제가 구매자를 선정해 아래
                   연락처로 개별 연락드립니다.
                   <br />
-                  거래 우선순위: <strong>① 세트 구매(전체 53권 세트 최우선) ② 단권 구매</strong>.
-                  신청자가 여러 명이면 <strong>학동역(7호선) 인근 직거래 가능한 분께 우선 판매</strong>됩니다.
+                  거래 우선순위:{' '}
+                  <strong>① 세트 구매(전체 53권 세트 최우선) ② 학동역(7호선) 인근 직거래 가능한 분</strong>
                 </p>
                 <form onSubmit={submit}>
                   <div className="fieldrow">
