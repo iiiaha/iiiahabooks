@@ -83,5 +83,32 @@
       }
     ],
     "total": 25700
+  },
+  {
+    "id": "app-1783726106313-34xfeu",
+    "createdAt": "2026-07-10T23:28:26.313Z",
+    "name": "송정원",
+    "phone": "01066885236",
+    "memo": "택배 구매희망합니다!",
+    "hakdong": false,
+    "area": "",
+    "days": [],
+    "items": [
+      {
+        "type": "set",
+        "id": "set-garm",
+        "title": "GARM 매거진 전체 세트 (22권)",
+        "price": 190000,
+        "count": 22
+      },
+      {
+        "type": "set",
+        "id": "set-annual",
+        "title": "애뉴얼 인테리어 디테일 전체 세트 (12권)",
+        "price": 449000,
+        "count": 12
+      }
+    ],
+    "total": 639000
   }
 ]
