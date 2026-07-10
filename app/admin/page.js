@@ -408,7 +408,7 @@ export default function AdminPage() {
                 {a.hakdong !== undefined && (
                   <div style={{ marginTop: 6 }}>
                     거래방식: {a.hakdong ? '학동역(7호선) 직거래' : `택배 거래${a.area ? ` · 희망 지역: ${a.area}` : ''}`}
-                    {a.days?.length > 0 && <> · 가능 요일: {a.days.join(', ')}</>}
+                    {a.days?.length > 0 && <> · 직거래 가능 요일: {a.days.join(', ')}</>}
                   </div>
                 )}
                 <ul>

@@ -15,7 +15,8 @@ function EditForm({ app, name, phone, onDone, onCancel }) {
     setDays((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
 
   const save = async () => {
-    if (days.length === 0) return setErr('거래 가능 요일을 하나 이상 선택해 주세요.');
+    if (hakdong === 'yes' && days.length === 0)
+      return setErr('직거래 가능 요일을 하나 이상 선택해 주세요.');
     setSaving(true);
     setErr('');
     const res = await fetch('/api/my', {
@@ -28,7 +29,7 @@ function EditForm({ app, name, phone, onDone, onCancel }) {
         id: app.id,
         hakdong: hakdong === 'yes',
         area: '',
-        days,
+        days: hakdong === 'yes' ? days : [],
         memo,
       }),
     });
@@ -59,16 +60,18 @@ function EditForm({ app, name, phone, onDone, onCancel }) {
           </p>
         )}
       </div>
-      <div className="field">
-        <label>거래 가능 요일</label>
-        <div className="choicerow">
-          {DAY_OPTIONS.map((d) => (
-            <label key={d}>
-              <input type="checkbox" checked={days.includes(d)} onChange={() => toggleDay(d)} /> {d}
-            </label>
-          ))}
+      {hakdong === 'yes' && (
+        <div className="field">
+          <label>직거래 가능 요일</label>
+          <div className="choicerow">
+            {DAY_OPTIONS.map((d) => (
+              <label key={d}>
+                <input type="checkbox" checked={days.includes(d)} onChange={() => toggleDay(d)} /> {d}
+              </label>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div className="field">
         <label>남기실 말씀</label>
         <textarea rows={2} value={memo} onChange={(e) => setMemo(e.target.value)} maxLength={500} />
@@ -184,7 +187,7 @@ export default function MyPage() {
                 </ul>
                 <div style={{ marginTop: 10, fontSize: 12, color: '#8e8e8e' }}>
                   거래방식: {a.hakdong ? '학동역(7호선) 직거래' : '택배 거래'}
-                  {a.days?.length > 0 && <> · 가능 요일: {a.days.join(', ')}</>}
+                  {a.days?.length > 0 && <> · 직거래 가능 요일: {a.days.join(', ')}</>}
                   {a.memo && (
                     <>
                       <br />

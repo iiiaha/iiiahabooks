@@ -50,8 +50,8 @@ export default function CartView({ books, sets, config }) {
       setResult({ ok: false, message: '거래방식을 선택해 주세요.' });
       return;
     }
-    if (days.length === 0) {
-      setResult({ ok: false, message: '거래 가능 요일을 하나 이상 선택해 주세요.' });
+    if (hakdong === 'yes' && days.length === 0) {
+      setResult({ ok: false, message: '직거래 가능 요일을 하나 이상 선택해 주세요.' });
       return;
     }
     setSending(true);
@@ -66,7 +66,7 @@ export default function CartView({ books, sets, config }) {
           memo,
           hakdong: hakdong === 'yes',
           area: '',
-          days,
+          days: hakdong === 'yes' ? days : [],
           items: cart,
           website: '',
         }),
@@ -206,21 +206,23 @@ export default function CartView({ books, sets, config }) {
                       </p>
                     )}
                   </div>
-                  <div className="field">
-                    <label>거래 가능 요일 * (7/20~7/26 중 선택)</label>
-                    <div className="chips">
-                      {DAY_OPTIONS.map((d) => (
-                        <label key={d} className={`chip${days.includes(d) ? ' on' : ''}`}>
-                          <input
-                            type="checkbox"
-                            checked={days.includes(d)}
-                            onChange={() => toggleDay(d)}
-                          />
-                          {d}
-                        </label>
-                      ))}
+                  {hakdong === 'yes' && (
+                    <div className="field">
+                      <label>직거래 가능 요일 * (7/20~7/26 중 선택)</label>
+                      <div className="chips">
+                        {DAY_OPTIONS.map((d) => (
+                          <label key={d} className={`chip${days.includes(d) ? ' on' : ''}`}>
+                            <input
+                              type="checkbox"
+                              checked={days.includes(d)}
+                              onChange={() => toggleDay(d)}
+                            />
+                            {d}
+                          </label>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <div className="field">
                     <label htmlFor="memo">남기실 말씀 (선택)</label>
                     <textarea
