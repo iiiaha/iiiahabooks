@@ -141,7 +141,7 @@ export default function CartView({ books, sets, config }) {
             <span>{total != null ? won(total) : '일부 가격 미정'}</span>
           </div>
 
-          <div className="form">
+          <div className="form formbox">
             <h2>거래 신청하기</h2>
             {config.deadline && (
               <p className="hint">신청 마감: {deadlineLabel(config.deadline)}</p>
@@ -160,52 +160,49 @@ export default function CartView({ books, sets, config }) {
                   신청자가 여러 명이면 <strong>학동역(7호선) 인근 직거래 가능한 분께 우선 판매</strong>됩니다.
                 </p>
                 <form onSubmit={submit}>
-                  <div className="field">
-                    <label htmlFor="name">이름 *</label>
-                    <input
-                      id="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      maxLength={30}
-                      placeholder="홍길동"
-                    />
-                  </div>
-                  <div className="field">
-                    <label htmlFor="phone">핸드폰 번호 * (선정 시 연락드릴 번호)</label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                      pattern="01[0-9]-?[0-9]{3,4}-?[0-9]{4}"
-                      placeholder="010-1234-5678"
-                    />
+                  <div className="fieldrow">
+                    <div className="field">
+                      <label htmlFor="name">이름 *</label>
+                      <input
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        maxLength={30}
+                        placeholder="홍길동"
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="phone">핸드폰 번호 * (선정 시 연락드릴 번호)</label>
+                      <input
+                        id="phone"
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                        pattern="01[0-9]-?[0-9]{3,4}-?[0-9]{4}"
+                        placeholder="010-1234-5678"
+                      />
+                    </div>
                   </div>
                   <div className="field">
                     <label>학동역(7호선) 인근 직거래가 가능하신가요? *</label>
-                    <div className="choicerow">
-                      <label>
-                        <input
-                          type="radio"
-                          name="hakdong"
-                          value="yes"
-                          checked={hakdong === 'yes'}
-                          onChange={() => setHakdong('yes')}
-                        />{' '}
-                        가능
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name="hakdong"
-                          value="no"
-                          checked={hakdong === 'no'}
-                          onChange={() => setHakdong('no')}
-                        />{' '}
-                        불가능
-                      </label>
+                    <div className="chips">
+                      {[
+                        ['yes', '가능'],
+                        ['no', '불가능'],
+                      ].map(([v, label]) => (
+                        <label key={v} className={`chip${hakdong === v ? ' on' : ''}`}>
+                          <input
+                            type="radio"
+                            name="hakdong"
+                            value={v}
+                            checked={hakdong === v}
+                            onChange={() => setHakdong(v)}
+                          />
+                          {label}
+                        </label>
+                      ))}
                     </div>
                   </div>
                   {hakdong === 'no' && (
@@ -225,14 +222,14 @@ export default function CartView({ books, sets, config }) {
                   )}
                   <div className="field">
                     <label>거래 가능 요일 * (7/20~7/26 중 선택)</label>
-                    <div className="choicerow">
+                    <div className="chips">
                       {DAY_OPTIONS.map((d) => (
-                        <label key={d}>
+                        <label key={d} className={`chip${days.includes(d) ? ' on' : ''}`}>
                           <input
                             type="checkbox"
                             checked={days.includes(d)}
                             onChange={() => toggleDay(d)}
-                          />{' '}
+                          />
                           {d}
                         </label>
                       ))}
@@ -257,7 +254,7 @@ export default function CartView({ books, sets, config }) {
                     style={{ position: 'absolute', left: '-9999px' }}
                     aria-hidden="true"
                   />
-                  <button className="btn" type="submit" disabled={sending}>
+                  <button className="btn primary" type="submit" disabled={sending}>
                     {sending ? '접수 중…' : '거래 신청하기'}
                   </button>
                 </form>

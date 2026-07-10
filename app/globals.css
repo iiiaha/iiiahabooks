@@ -470,8 +470,67 @@ img {
 /* ── 폼 ── */
 .form {
   margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid var(--pencil);
+}
+
+.formbox {
+  margin-top: 32px;
+  border: 1px solid var(--pencil);
+  padding: 24px;
+}
+
+.fieldrow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border: 1px solid var(--pencil);
+  border-radius: var(--radius);
+  padding: 7px 12px;
+  font-size: 13px;
+  color: var(--smoke);
+  cursor: pointer;
+  user-select: none;
+}
+
+.chip:hover {
+  border-color: var(--graphite);
+}
+
+.chip.on {
+  border-color: var(--ink);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.chip input {
+  display: none;
+}
+
+.btn.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+}
+
+.btn.primary:hover {
+  opacity: 0.85;
+}
+
+.btn.primary:disabled {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: #fff;
 }
 
 .form h2 {
@@ -704,5 +763,8 @@ img {
 @media (max-width: 560px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .fieldrow {
+    grid-template-columns: 1fr;
   }
 }
