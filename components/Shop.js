@@ -177,7 +177,7 @@ export default function Shop({ books, sets, config }) {
           )}
           <p className="notice">
             <a className="textlink" href={OPENCHAT_URL} target="_blank" rel="noreferrer">
-              오픈채팅으로 문의하기 ↗
+              오픈채팅으로 문의하기(네고 환영) ↗
             </a>
           </p>
           {message && <p className="msg">{message}</p>}
