@@ -72,9 +72,7 @@ function SetCard({ set, sets, books, counts, onMessage }) {
     ? members.reduce((a, b) => a + (Number(b.listPrice) || 0), 0)
     : null;
   const discount =
-    sum != null && set.price != null && sum > set.price
-      ? Math.round((1 - set.price / sum) * 100)
-      : null;
+    sum != null && set.price != null && sum > set.price ? sum - set.price : null;
   const applicants = counts[set.id] || 0;
   const allSetApplicants = set.id === 'set-all' ? 0 : counts['set-all'] || 0;
 
@@ -107,7 +105,7 @@ function SetCard({ set, sets, books, counts, onMessage }) {
           )}
           <span className="now">{won(set.price) ?? '가격 미정'}</span>
           {discount != null && (
-            <span className="discountnote"> (개별구매 대비 {discount}% 할인)</span>
+            <span className="discountnote"> (개별구매 대비 {won(discount)} 할인)</span>
           )}
         </p>
         <p className="applicants">
