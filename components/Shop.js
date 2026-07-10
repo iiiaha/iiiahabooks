@@ -96,13 +96,6 @@ function SetCard({ set, sets, books, counts, onMessage }) {
       <div>
         <h3>{set.title}</h3>
         <p className="desc">{set.description}</p>
-        {discount != null && (
-          <p className="benefit">
-            개별 구매 합계 {won(sum)} → 세트 {won(set.price)}
-            <br />
-            <strong>{discount}% 할인</strong> · {won(sum - set.price)} 절약
-          </p>
-        )}
         <p className="price">
           {listSum != null && (
             <>
@@ -111,6 +104,9 @@ function SetCard({ set, sets, books, counts, onMessage }) {
             </>
           )}
           <span className="now">{won(set.price) ?? '가격 미정'}</span>
+          {discount != null && (
+            <span className="discountnote"> (개별구매 대비 {discount}% 할인)</span>
+          )}
         </p>
         <p className="applicants">
           현재 신청 <strong>{applicants}명</strong>

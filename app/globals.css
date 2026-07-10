@@ -269,6 +269,12 @@ img {
   font-size: 12px;
 }
 
+.setcard .discountnote {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--smoke);
+}
+
 .strike {
   text-decoration: line-through;
   color: var(--graphite);

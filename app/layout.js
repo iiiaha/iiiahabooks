@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 
 export const metadata = {
-  title: '책장을 정리합니다. — 건축·인테리어 서적 중고 판매',
+  title: '안녕하세요. iiiaha입니다. 책장을 정리합니다.',
   description:
     '건축·인테리어 관련 서적 53권 중고 판매. GARM 매거진, 애뉴얼 인테리어 디테일, 단행본.',
 };

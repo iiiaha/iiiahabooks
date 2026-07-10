@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <header className="header">
       <Link href="/" className="brand">
-        책장을 정리합니다.
+        안녕하세요. iiiaha입니다. 책장을 정리합니다.
       </Link>
       <nav>
         <Link href="/">도서</Link>
