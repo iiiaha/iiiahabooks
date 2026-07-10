@@ -122,6 +122,9 @@ function SetCard({ set, sets, books, counts, onMessage }) {
           <button className="btn-link" onClick={handleAdd} disabled={!allAvailable || !set.enabled}>
             {allAvailable && set.enabled ? '장바구니에 담기' : '판매 불가 (일부 판매됨)'}
           </button>
+          <Link href="/cart" className="textlink">
+            장바구니로 이동 →
+          </Link>
         </div>
       </div>
     </div>
