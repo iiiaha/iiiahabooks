@@ -55,8 +55,8 @@ function EditForm({ app, name, phone, onDone, onCancel }) {
         </div>
         {hakdong === 'no' && (
           <p className="hint" style={{ marginTop: 6, marginBottom: 0 }}>
-            <strong>세트 구매</strong> 시 택배비는 판매자가 부담합니다. <strong>단권 구매</strong>{' '}
-            시에는 착불(구매자 부담)로 발송됩니다.
+            <strong>세트 구매</strong> 시 택배비는 제가 부담하겠습니다. <strong>단권 구매</strong>{' '}
+            시에는 착불(구매자 부담)로 발송되는 점 양해 부탁드립니다.
           </p>
         )}
       </div>
