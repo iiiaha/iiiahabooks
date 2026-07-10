@@ -11,6 +11,14 @@ const CATEGORIES = [
   { key: 'book', label: '단행본' },
 ];
 
+const TABS = [
+  { key: 'all', label: '전체' },
+  { key: 'garm', label: 'GARM 매거진' },
+  { key: 'annual', label: '애뉴얼 디테일' },
+  { key: 'book', label: '단행본' },
+  { key: 'set', label: '세트구매' },
+];
+
 function BookCard({ book }) {
   const sold = book.status !== 'available';
   return (
@@ -36,6 +44,10 @@ function SetCard({ set, sets, books, onMessage }) {
   const sum = prices.every((p) => p != null)
     ? prices.reduce((a, p) => a + Number(p), 0)
     : null;
+  const discount =
+    sum != null && set.price != null && sum > set.price
+      ? Math.round((1 - set.price / sum) * 100)
+      : null;
 
   const handleAdd = () => {
     const r = addSet(set.id, sets);
@@ -57,9 +69,9 @@ function SetCard({ set, sets, books, onMessage }) {
       <div>
         <h3>{set.title}</h3>
         <p className="desc">{set.description}</p>
-        {sum != null && set.price != null && sum > set.price && (
+        {discount != null && (
           <p className="benefit">
-            개별 구매 합계 {won(sum)} → 세트 {won(set.price)} ({won(sum - set.price)} 할인)
+            개별 구매 합계 {won(sum)} → 세트 {won(set.price)} · <strong>{discount}% 할인</strong> ({won(sum - set.price)} 절약)
           </p>
         )}
         <p className="price">{won(set.price) ?? '가격 미정'}</p>
@@ -74,7 +86,7 @@ function SetCard({ set, sets, books, onMessage }) {
 }
 
 export default function Shop({ books, sets, config }) {
-  const [tab, setTab] = useState('single');
+  const [tab, setTab] = useState('all');
   const [message, setMessage] = useState('');
 
   const notify = (m) => {
@@ -82,28 +94,45 @@ export default function Shop({ books, sets, config }) {
     if (m) setTimeout(() => setMessage(''), 4000);
   };
 
+  const visibleCategories =
+    tab === 'all' ? CATEGORIES : CATEGORIES.filter((c) => c.key === tab);
+
   return (
     <div className="home">
       <aside>
-        <p className="bio">{config.intro}</p>
-        {config.notice && <p className="notice">{config.notice}</p>}
-        {config.deadline && (
-          <p className="deadline">신청 마감: {deadlineLabel(config.deadline)}</p>
-        )}
-        <div className="tabs">
-          <button className={tab === 'single' ? 'active' : ''} onClick={() => setTab('single')}>
-            개별구매
-          </button>
-          <button className={tab === 'set' ? 'active' : ''} onClick={() => setTab('set')}>
-            세트구매
-          </button>
+        <div className="bio">
+          {config.intro}
+          {config.notice && <p className="notice">{config.notice}</p>}
+          {config.deadline && (
+            <p className="deadline">신청 마감 {deadlineLabel(config.deadline)}</p>
+          )}
+          {message && <p className="msg">{message}</p>}
         </div>
-        {message && <p className="msg">{message}</p>}
       </aside>
 
       <main>
-        {tab === 'single' ? (
-          CATEGORIES.map((cat) => {
+        <div className="tabs">
+          {TABS.map((t) => (
+            <button
+              key={t.key}
+              className={tab === t.key ? 'active' : ''}
+              onClick={() => setTab(t.key)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+
+        {tab === 'set' ? (
+          <div className="setlist">
+            {sets
+              .filter((s) => s.enabled)
+              .map((s) => (
+                <SetCard key={s.id} set={s} sets={sets} books={books} onMessage={notify} />
+              ))}
+          </div>
+        ) : (
+          visibleCategories.map((cat) => {
             const list = books.filter((b) => b.category === cat.key);
             if (list.length === 0) return null;
             return (
@@ -119,14 +148,6 @@ export default function Shop({ books, sets, config }) {
               </section>
             );
           })
-        ) : (
-          <div className="setlist">
-            {sets
-              .filter((s) => s.enabled)
-              .map((s) => (
-                <SetCard key={s.id} set={s} sets={sets} books={books} onMessage={notify} />
-              ))}
-          </div>
         )}
       </main>
     </div>

@@ -1,5 +1,8 @@
+import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
+
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 
 export const metadata = {
   title: 'iiiaha books — 건축·인테리어 서적 중고 판매',
@@ -10,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ko">
-      <body>
+      <body className={inter.className}>
         <div className="wrap">
           <Header />
           {children}

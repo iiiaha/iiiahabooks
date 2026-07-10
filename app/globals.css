@@ -1,12 +1,11 @@
 :root {
-  --ink: #000000;
-  --charcoal: #404040;
-  --ash: #8b8b94;
-  --white: #ffffff;
-  --radius: 10px;
-  --gap: 20px;
-  --section: 100px;
-  --max: 1200px;
+  --ink: #252525;
+  --graphite: #a8a8a8;
+  --smoke: #8e8e8e;
+  --pencil: #ebebeb;
+  --paper: #ffffff;
+  --radius: 8px;
+  --max: 1280px;
 }
 
 * {
@@ -20,12 +19,12 @@ html {
 }
 
 body {
-  background: var(--white);
+  background: var(--paper);
   color: var(--ink);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Apple SD Gothic Neo', 'Malgun Gothic', Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
   line-height: 1.5;
 }
 
@@ -47,7 +46,7 @@ img {
 .wrap {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 /* ── 헤더 ── */
@@ -55,74 +54,86 @@ img {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  padding: 40px 0 0;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--pencil);
 }
 
 .header .brand {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
+  color: var(--ink);
 }
 
 .header nav {
   display: flex;
-  gap: 20px;
-  font-size: 12px;
-  font-weight: 400;
+  gap: 16px;
+  font-size: 13px;
 }
 
 .header nav a {
+  color: var(--smoke);
+}
+
+.header nav a:hover {
   color: var(--ink);
 }
 
-.header nav a.muted {
-  color: var(--ash);
-}
-
-/* ── 홈 2단 구성 ── */
+/* ── 홈: 바이오 레일 + 워크 웰 ── */
 .home {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 60px;
-  margin-top: 60px;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  padding-top: 40px;
   align-items: start;
 }
 
+.home aside {
+  position: sticky;
+  top: 40px;
+}
+
 .bio {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink);
   line-height: 1.6;
-  max-width: 360px;
 }
 
 .bio .notice {
-  margin-top: 20px;
+  margin-top: 16px;
   font-size: 12px;
-  font-weight: 400;
-  color: var(--ash);
-  line-height: 1.6;
+  color: var(--graphite);
+  line-height: 1.5;
 }
 
 .bio .deadline {
   margin-top: 8px;
   font-size: 12px;
-  font-weight: 400;
-  color: var(--charcoal);
+  color: var(--ink);
+  font-weight: 500;
 }
 
+/* ── 필터 탭 바 ── */
 .tabs {
   display: flex;
-  gap: 20px;
-  margin-top: 32px;
-  font-size: 12px;
-  font-weight: 400;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--pencil);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
 .tabs button {
   background: none;
   border: none;
   padding: 0;
-  font-size: 12px;
-  color: var(--ash);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--graphite);
+}
+
+.tabs button:hover {
+  color: var(--ink);
 }
 
 .tabs button.active {
@@ -131,26 +142,26 @@ img {
 
 /* ── 그리드 ── */
 .section {
-  margin-bottom: var(--section);
+  margin-bottom: 48px;
 }
 
 .section h2 {
   font-size: 12px;
   font-weight: 400;
-  color: var(--ash);
-  margin-bottom: 15px;
+  color: var(--graphite);
+  margin-bottom: 12px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 24px 12px;
+  gap: 28px 12px;
 }
 
 .card .thumbbox {
   position: relative;
   overflow: hidden;
-  background: var(--white);
+  background: var(--paper);
 }
 
 .card img {
@@ -160,22 +171,20 @@ img {
 }
 
 .card.sold img {
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 .card .soldmark {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 8px;
+  left: 8px;
   font-size: 12px;
-  font-weight: 400;
   color: var(--ink);
 }
 
 .card .meta {
   margin-top: 8px;
   font-size: 12px;
-  font-weight: 400;
   line-height: 1.4;
 }
 
@@ -184,22 +193,27 @@ img {
 }
 
 .card .meta .price {
-  color: var(--charcoal);
+  color: var(--graphite);
   margin-top: 2px;
 }
 
-/* ── 세트 카드 ── */
+/* ── 세트 목록 ── */
 .setlist {
   display: flex;
   flex-direction: column;
-  gap: 40px;
 }
 
 .setcard {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: 40px;
   align-items: start;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--pencil);
+}
+
+.setcard:first-child {
+  padding-top: 8px;
 }
 
 .setcard .covers {
@@ -215,56 +229,70 @@ img {
 }
 
 .setcard h3 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
 }
 
 .setcard .desc {
   margin-top: 8px;
   font-size: 12px;
-  font-weight: 400;
-  color: var(--charcoal);
-  line-height: 1.6;
+  color: var(--smoke);
+  line-height: 1.5;
 }
 
 .setcard .benefit {
   margin-top: 12px;
   font-size: 12px;
-  font-weight: 400;
-  color: var(--ash);
+  color: var(--graphite);
+}
+
+.setcard .benefit strong {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 .setcard .price {
   margin-top: 12px;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 /* ── 버튼 ── */
 .btn {
   display: inline-block;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--pencil);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--paper);
   color: var(--ink);
-  padding: 10px 20px;
-  font-size: 12px;
-  font-weight: 400;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.btn:hover {
+  border-color: var(--ink);
 }
 
 .btn:disabled {
-  border-color: var(--ash);
-  color: var(--ash);
+  color: var(--graphite);
   cursor: default;
 }
 
+.btn:disabled:hover {
+  border-color: var(--pencil);
+}
+
 .btn.ghost {
-  border-color: var(--ash);
-  color: var(--charcoal);
+  color: var(--smoke);
+}
+
+.btn.ghost:hover {
+  color: var(--ink);
 }
 
 .btnrow {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
   margin-top: 20px;
 }
@@ -273,90 +301,90 @@ img {
 .detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin-top: 60px;
+  gap: 56px;
+  padding-top: 40px;
   align-items: start;
 }
 
 .detail .photo img {
   width: 100%;
-  border-radius: var(--radius);
 }
 
 .detail h1 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.4;
 }
 
 .detail .info {
-  margin-top: 32px;
-  font-size: 14px;
-  font-weight: 400;
+  margin-top: 24px;
+  font-size: 13px;
 }
 
 .detail .info .row {
   display: grid;
   grid-template-columns: 110px 1fr;
   gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--pencil);
 }
 
 .detail .info .row .k {
-  color: var(--ash);
+  color: var(--graphite);
   font-size: 12px;
-  padding-top: 2px;
+  padding-top: 1px;
 }
 
 .detail .info .row .saleprice {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
 }
 
 .backlink {
   display: inline-block;
-  margin-top: 60px;
+  margin-top: 40px;
   font-size: 12px;
-  font-weight: 400;
-  color: var(--ash);
+  color: var(--graphite);
+}
+
+.backlink:hover {
+  color: var(--ink);
 }
 
 /* ── 장바구니 ── */
 .cartpage {
   max-width: 640px;
-  margin: 60px auto 0;
+  margin: 40px auto 0;
 }
 
 .cartpage h1 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 
 .cartitem {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
+  grid-template-columns: 56px 1fr auto;
   gap: 16px;
   align-items: center;
-  padding: 16px 0;
-  border-bottom: 1px solid #eee;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--pencil);
 }
 
 .cartitem img {
-  width: 64px;
+  width: 56px;
   aspect-ratio: 3 / 4;
   object-fit: cover;
 }
 
 .cartitem .t {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.4;
 }
 
 .cartitem .p {
   font-size: 12px;
-  font-weight: 400;
-  color: var(--charcoal);
+  color: var(--graphite);
   margin-top: 2px;
 }
 
@@ -364,44 +392,49 @@ img {
   background: none;
   border: none;
   font-size: 12px;
-  color: var(--ash);
+  color: var(--graphite);
+}
+
+.cartitem .rm:hover {
+  color: var(--ink);
 }
 
 .carttotal {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
-  font-size: 16px;
+  padding: 16px 0;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 /* ── 폼 ── */
 .form {
   margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--pencil);
 }
 
 .form h2 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   margin-bottom: 8px;
 }
 
 .form .hint {
   font-size: 12px;
-  font-weight: 400;
-  color: var(--ash);
-  line-height: 1.6;
+  color: var(--graphite);
+  line-height: 1.5;
   margin-bottom: 20px;
 }
 
 .field {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .field label {
   display: block;
   font-size: 12px;
-  font-weight: 400;
-  color: var(--charcoal);
+  color: var(--smoke);
   margin-bottom: 6px;
 }
 
@@ -409,12 +442,12 @@ img {
 .field textarea,
 .field select {
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid var(--pencil);
   border-radius: var(--radius);
-  padding: 10px 12px;
+  padding: 9px 12px;
   font: inherit;
-  font-size: 14px;
-  background: var(--white);
+  font-size: 13px;
+  background: var(--paper);
   color: var(--ink);
 }
 
@@ -426,55 +459,57 @@ img {
 }
 
 .msg {
-  margin-top: 16px;
+  margin-top: 14px;
   font-size: 12px;
-  font-weight: 400;
-  color: var(--charcoal);
-  line-height: 1.6;
+  color: var(--smoke);
+  line-height: 1.5;
 }
 
 .msg.error {
-  color: #b00020;
+  color: var(--ink);
+  font-weight: 500;
 }
 
 .empty {
-  margin-top: 40px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--ash);
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--graphite);
+}
+
+.empty a {
+  color: var(--ink);
 }
 
 /* ── 관리자 ── */
 .admin {
-  margin-top: 60px;
+  padding-top: 40px;
   padding-bottom: 120px;
 }
 
 .admin h1 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .admin table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
-  font-weight: 400;
 }
 
 .admin th {
   text-align: left;
   font-size: 12px;
   font-weight: 400;
-  color: var(--ash);
+  color: var(--graphite);
   padding: 8px;
   border-bottom: 1px solid var(--ink);
 }
 
 .admin td {
   padding: 8px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--pencil);
   vertical-align: middle;
 }
 
@@ -489,46 +524,54 @@ img {
 
 .admin td input,
 .admin td select {
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  border: 1px solid var(--pencil);
+  border-radius: var(--radius);
   padding: 6px 8px;
   font: inherit;
   font-size: 13px;
   width: 110px;
 }
 
+.admin td input:focus,
+.admin td select:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
 .admin .apps .appcard {
-  border: 1px solid #eee;
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-bottom: 16px;
+  border: 1px solid var(--pencil);
+  border-radius: 0;
+  padding: 16px 20px;
+  margin-bottom: 12px;
   font-size: 13px;
-  font-weight: 400;
 }
 
 .admin .apps .appcard .who {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .admin .apps .appcard ul {
   margin: 10px 0 0 18px;
-  color: var(--charcoal);
+  color: var(--smoke);
 }
 
 .footer {
-  margin-top: var(--section);
-  padding: 40px 0;
+  margin-top: 80px;
+  padding: 24px 0 40px;
+  border-top: 1px solid var(--pencil);
   font-size: 12px;
-  font-weight: 400;
-  color: var(--ash);
+  color: var(--graphite);
 }
 
 /* ── 반응형 ── */
 @media (max-width: 900px) {
   .home {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
+  }
+  .home aside {
+    position: static;
   }
   .detail {
     grid-template-columns: 1fr;
@@ -536,6 +579,7 @@ img {
   }
   .setcard {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
   .grid {
     grid-template-columns: repeat(3, 1fr);
