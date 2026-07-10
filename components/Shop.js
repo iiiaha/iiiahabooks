@@ -66,8 +66,9 @@ function SetCard({ set, sets, books, counts, onMessage }) {
   const sum = prices.every((p) => p != null)
     ? prices.reduce((a, p) => a + Number(p), 0)
     : null;
-  const listSum = members.every((b) => b.listPrice != null)
-    ? members.reduce((a, b) => a + Number(b.listPrice), 0)
+  // 정가 미확인(독립출판물 등)인 책은 빼고 합산
+  const listSum = members.some((b) => b.listPrice != null)
+    ? members.reduce((a, b) => a + (Number(b.listPrice) || 0), 0)
     : null;
   const discount =
     sum != null && set.price != null && sum > set.price

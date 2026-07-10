@@ -153,7 +153,17 @@ export default function AdminPage() {
                 <tr key={b.id}>
                   <td>{CAT_LABEL[b.category]}</td>
                   <td>{b.title}</td>
-                  <td>{won(b.listPrice) ?? '—'}</td>
+                  <td>
+                    <input
+                      type="number"
+                      min="0"
+                      step="500"
+                      value={b.listPrice ?? ''}
+                      onChange={(e) =>
+                        setBookField(b.id, 'listPrice', e.target.value === '' ? null : Number(e.target.value))
+                      }
+                    />
+                  </td>
                   <td>
                     {b.aladinUsedUrl ? (
                       <a
