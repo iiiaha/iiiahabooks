@@ -12,11 +12,11 @@ const CATEGORIES = [
 ];
 
 const TABS = [
+  { key: 'set', label: '세트구매' },
   { key: 'all', label: '전체' },
   { key: 'garm', label: 'GARM 매거진' },
   { key: 'annual', label: '애뉴얼 디테일' },
   { key: 'book', label: '단행본' },
-  { key: 'set', label: '세트구매' },
 ];
 
 function BookCard({ book }) {
@@ -62,9 +62,13 @@ function SetCard({ set, sets, books, onMessage }) {
   return (
     <div className="setcard">
       <div className="covers">
-        {members.slice(0, 8).map((b) => (
-          <img key={b.id} src={b.thumb} alt={b.title} loading="lazy" />
-        ))}
+        {/* 세트 전체에서 고르게 뽑은 8권 — 전체 세트는 매거진·애뉴얼·단행본이 섞여 보인다 */}
+        {members
+          .filter((_, i) => i % Math.max(1, Math.floor(members.length / 8)) === 0)
+          .slice(0, 8)
+          .map((b) => (
+            <img key={b.id} src={b.thumb} alt={b.title} loading="lazy" />
+          ))}
       </div>
       <div>
         <h3>{set.title}</h3>
@@ -86,7 +90,7 @@ function SetCard({ set, sets, books, onMessage }) {
 }
 
 export default function Shop({ books, sets, config }) {
-  const [tab, setTab] = useState('all');
+  const [tab, setTab] = useState('set');
   const [message, setMessage] = useState('');
 
   const notify = (m) => {
@@ -133,7 +137,10 @@ export default function Shop({ books, sets, config }) {
           </div>
         ) : (
           visibleCategories.map((cat) => {
-            const list = books.filter((b) => b.category === cat.key);
+            let list = books.filter((b) => b.category === cat.key);
+            // 애뉴얼 인테리어 디테일은 최신호(2025)부터 내림차순
+            if (cat.key === 'annual')
+              list = [...list].sort((a, b) => b.id.localeCompare(a.id));
             if (list.length === 0) return null;
             return (
               <section key={cat.key} className="section">
