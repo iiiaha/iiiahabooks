@@ -14,7 +14,7 @@
     "note": "2017년 발행",
     "image": "/images/books/g01.jpg",
     "thumb": "/images/books/g01-thumb.jpg",
-    "salePrice": null,
+    "salePrice": 10000,
     "condition": null,
     "status": "available"
   },
