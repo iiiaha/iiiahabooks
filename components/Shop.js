@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Countdown from '@/components/Countdown';
 import { addSet } from '@/lib/cart';
 import { won, deadlineLabel } from '@/lib/format';
 
@@ -13,27 +14,10 @@ const CATEGORIES = [
 
 const TABS = [
   { key: 'set', label: '세트구매' },
-  { key: 'all', label: '전체' },
   { key: 'garm', label: 'GARM 매거진' },
   { key: 'annual', label: '애뉴얼 디테일' },
   { key: 'book', label: '단행본' },
 ];
-
-function BookCard({ book }) {
-  const sold = book.status !== 'available';
-  return (
-    <Link href={`/books/${book.id}`} className={`card${sold ? ' sold' : ''}`}>
-      <div className="thumbbox">
-        <img src={book.thumb} alt={book.title} loading="lazy" />
-        {sold && <span className="soldmark">{book.status === 'reserved' ? '예약중' : '판매완료'}</span>}
-      </div>
-      <div className="meta">
-        <div className="title">{book.title}</div>
-        <div className="price">{won(book.salePrice) ?? '가격 미정'}</div>
-      </div>
-    </Link>
-  );
-}
 
 // 권수에 맞는 열 수 — 53권=9열(6행), 22권=8열(3행), 19권=7열(3행), 12권=6열(2행)
 function coversCols(n) {
@@ -43,7 +27,34 @@ function coversCols(n) {
   return 6;
 }
 
-function SetCard({ set, sets, books, onMessage }) {
+function BookCard({ book, sets, counts }) {
+  const sold = book.status !== 'available';
+  const direct = counts[book.id] || 0;
+  const viaSets = sets
+    .filter((s) => s.bookIds.includes(book.id))
+    .reduce((a, s) => a + (counts[s.id] || 0), 0);
+  return (
+    <Link href={`/books/${book.id}`} className={`card${sold ? ' sold' : ''}`}>
+      <div className="thumbbox">
+        <img src={book.thumb} alt={book.title} loading="lazy" />
+        {sold && <span className="soldmark">{book.status === 'reserved' ? '예약중' : '판매완료'}</span>}
+      </div>
+      <div className="meta">
+        <div className="title">{book.title}</div>
+        <div className="price">{won(book.salePrice) ?? '가격 미정'}</div>
+        {(direct > 0 || viaSets > 0) && (
+          <div className="applicants">
+            {direct > 0 && `단권 신청 ${direct}명`}
+            {direct > 0 && viaSets > 0 && ' · '}
+            {viaSets > 0 && `세트 우선 ${viaSets}명`}
+          </div>
+        )}
+      </div>
+    </Link>
+  );
+}
+
+function SetCard({ set, sets, books, counts, onMessage }) {
   const members = set.bookIds
     .map((id) => books.find((b) => b.id === id))
     .filter(Boolean);
@@ -56,6 +67,8 @@ function SetCard({ set, sets, books, onMessage }) {
     sum != null && set.price != null && sum > set.price
       ? Math.round((1 - set.price / sum) * 100)
       : null;
+  const applicants = counts[set.id] || 0;
+  const allSetApplicants = set.id === 'set-all' ? 0 : counts['set-all'] || 0;
 
   const handleAdd = () => {
     const r = addSet(set.id, sets);
@@ -83,6 +96,10 @@ function SetCard({ set, sets, books, onMessage }) {
           </p>
         )}
         <p className="price">{won(set.price) ?? '가격 미정'}</p>
+        <p className="applicants">
+          현재 신청 <strong>{applicants}명</strong>
+          {allSetApplicants > 0 && ` · 전체 53권 세트 신청 ${allSetApplicants}명에게 우선권이 있습니다`}
+        </p>
         <div className="btnrow">
           <button className="btn" onClick={handleAdd} disabled={!allAvailable || !set.enabled}>
             {allAvailable && set.enabled ? '장바구니에 담기' : '판매 불가 (일부 판매됨)'}
@@ -96,14 +113,29 @@ function SetCard({ set, sets, books, onMessage }) {
 export default function Shop({ books, sets, config }) {
   const [tab, setTab] = useState('set');
   const [message, setMessage] = useState('');
+  const [counts, setCounts] = useState({});
+
+  useEffect(() => {
+    let alive = true;
+    const load = () =>
+      fetch('/api/stats')
+        .then((r) => r.json())
+        .then((j) => {
+          if (alive) setCounts(j.counts || {});
+        })
+        .catch(() => {});
+    load();
+    const t = setInterval(load, 30000);
+    return () => {
+      alive = false;
+      clearInterval(t);
+    };
+  }, []);
 
   const notify = (m) => {
     setMessage(m);
     if (m) setTimeout(() => setMessage(''), 4000);
   };
-
-  const visibleCategories =
-    tab === 'all' ? CATEGORIES : CATEGORIES.filter((c) => c.key === tab);
 
   return (
     <div className="home">
@@ -111,8 +143,15 @@ export default function Shop({ books, sets, config }) {
         <div className="bio">
           {config.intro}
           {config.notice && <p className="notice">{config.notice}</p>}
+          <p className="notice">
+            거래 우선순위: <strong>① 세트 구매</strong> (전체 53권 세트 최우선) <strong>② 단권 구매</strong>.
+            신청자가 여러 명이면 학동역(7호선) 인근 직거래 가능한 분께 우선 판매합니다.
+          </p>
           {config.deadline && (
-            <p className="deadline">신청 마감 {deadlineLabel(config.deadline)}</p>
+            <>
+              <p className="deadline">신청 마감 {deadlineLabel(config.deadline)}</p>
+              <Countdown deadline={config.deadline} />
+            </>
           )}
           {message && <p className="msg">{message}</p>}
         </div>
@@ -136,11 +175,11 @@ export default function Shop({ books, sets, config }) {
             {sets
               .filter((s) => s.enabled)
               .map((s) => (
-                <SetCard key={s.id} set={s} sets={sets} books={books} onMessage={notify} />
+                <SetCard key={s.id} set={s} sets={sets} books={books} counts={counts} onMessage={notify} />
               ))}
           </div>
         ) : (
-          visibleCategories.map((cat) => {
+          CATEGORIES.filter((c) => c.key === tab).map((cat) => {
             let list = books.filter((b) => b.category === cat.key);
             // 애뉴얼 인테리어 디테일은 최신호(2025)부터 내림차순
             if (cat.key === 'annual')
@@ -153,7 +192,7 @@ export default function Shop({ books, sets, config }) {
                 </h2>
                 <div className="grid">
                   {list.map((b) => (
-                    <BookCard key={b.id} book={b} />
+                    <BookCard key={b.id} book={b} sets={sets} counts={counts} />
                   ))}
                 </div>
               </section>

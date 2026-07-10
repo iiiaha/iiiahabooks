@@ -464,6 +464,61 @@ img {
   line-height: 1.5;
 }
 
+.countdown {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.applicants {
+  font-size: 12px;
+  color: var(--smoke);
+  margin-top: 2px;
+}
+
+.setcard .applicants {
+  margin-top: 10px;
+}
+
+.setcard .applicants strong,
+.applybox strong,
+.bio .notice strong,
+.form .hint strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.applybox {
+  margin-top: 20px;
+  border: 1px solid var(--pencil);
+  padding: 14px 16px;
+  font-size: 12px;
+  color: var(--smoke);
+  line-height: 1.6;
+}
+
+.choicerow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.choicerow label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.choicerow input {
+  accent-color: var(--ink);
+  width: auto;
+}
+
 .msg.error {
   color: var(--ink);
   font-weight: 500;

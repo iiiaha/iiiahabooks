@@ -334,10 +334,16 @@ export default function AdminPage() {
                 <div className="who">
                   {a.name} · {a.phone}
                 </div>
-                <div style={{ color: '#8b8b94', marginTop: 4 }}>
+                <div style={{ color: '#8e8e8e', marginTop: 4 }}>
                   {new Date(a.createdAt).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })} ·{' '}
                   {a.total != null ? `합계 ${won(a.total)}` : '일부 가격 미정'}
                 </div>
+                {a.hakdong !== undefined && (
+                  <div style={{ marginTop: 6 }}>
+                    학동역 직거래: {a.hakdong ? '가능' : `불가 · 희망 지역: ${a.area || '-'}`}
+                    {a.days?.length > 0 && <> · 가능 요일: {a.days.join(', ')}</>}
+                  </div>
+                )}
                 <ul>
                   {a.items.map((i) => (
                     <li key={`${a.id}-${i.type}-${i.id}`}>

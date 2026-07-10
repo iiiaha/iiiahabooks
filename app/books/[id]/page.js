@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getBooks, getSets } from '@/lib/data';
 import Stars from '@/components/Stars';
 import AddToCart from '@/components/AddToCart';
+import BookApplicants from '@/components/BookApplicants';
 import { won } from '@/lib/format';
 
 export async function generateStaticParams() {
@@ -76,6 +77,8 @@ export default async function BookPage({ params }) {
             </a>
           )}
         </div>
+
+        <BookApplicants book={book} sets={sets} />
 
         <div className="btnrow">
           <AddToCart book={book} sets={sets} />

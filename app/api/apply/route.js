@@ -5,6 +5,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const PHONE_RE = /^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$/;
+const DAY_OPTIONS = ['7/20(월)', '7/21(화)', '7/22(수)', '7/23(목)', '7/24(금)', '7/25(토)', '7/26(일)'];
 
 export async function POST(request) {
   let body;
@@ -14,7 +15,7 @@ export async function POST(request) {
     return Response.json({ error: '잘못된 요청입니다.' }, { status: 400 });
   }
 
-  const { name, phone, memo, items, website } = body || {};
+  const { name, phone, memo, hakdong, area, days, items, website } = body || {};
 
   // honeypot — 봇이 채우는 숨은 필드
   if (website) return Response.json({ ok: true });
@@ -27,6 +28,12 @@ export async function POST(request) {
     return Response.json({ error: '장바구니가 비어 있습니다.' }, { status: 400 });
   if (memo != null && (typeof memo !== 'string' || memo.length > 500))
     return Response.json({ error: '메모가 너무 깁니다.' }, { status: 400 });
+  if (typeof hakdong !== 'boolean')
+    return Response.json({ error: '학동역 인근 직거래 가능 여부를 선택해 주세요.' }, { status: 400 });
+  if (!hakdong && (typeof area !== 'string' || !area.trim() || area.length > 50))
+    return Response.json({ error: '거래 희망 지역을 입력해 주세요.' }, { status: 400 });
+  if (!Array.isArray(days) || days.length === 0 || days.some((d) => !DAY_OPTIONS.includes(d)))
+    return Response.json({ error: '거래 가능 요일(7/20~7/26)을 하나 이상 선택해 주세요.' }, { status: 400 });
 
   const [config, books, sets] = await Promise.all([
     readJson('config.json'),
@@ -76,6 +83,9 @@ export async function POST(request) {
     name: name.trim(),
     phone: phone.trim(),
     memo: (memo || '').trim(),
+    hakdong,
+    area: hakdong ? '' : area.trim(),
+    days: DAY_OPTIONS.filter((d) => days.includes(d)),
     items: snapshot,
     total,
   };

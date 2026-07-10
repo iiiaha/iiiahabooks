@@ -11,8 +11,16 @@ export default function CartView({ books, sets, config }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [memo, setMemo] = useState('');
+  const [hakdong, setHakdong] = useState(''); // 'yes' | 'no'
+  const [area, setArea] = useState('');
+  const [days, setDays] = useState([]);
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState(null); // {ok, message}
+
+  const DAY_OPTIONS = ['7/20(월)', '7/21(화)', '7/22(수)', '7/23(목)', '7/24(금)', '7/25(토)', '7/26(일)'];
+
+  const toggleDay = (d) =>
+    setDays((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
 
   useEffect(() => {
     const update = () => setCartState(getCart());
@@ -40,13 +48,34 @@ export default function CartView({ books, sets, config }) {
 
   const submit = async (e) => {
     e.preventDefault();
+    if (hakdong === '') {
+      setResult({ ok: false, message: '학동역 인근 직거래 가능 여부를 선택해 주세요.' });
+      return;
+    }
+    if (hakdong === 'no' && !area.trim()) {
+      setResult({ ok: false, message: '거래 희망 지역을 입력해 주세요.' });
+      return;
+    }
+    if (days.length === 0) {
+      setResult({ ok: false, message: '거래 가능 요일을 하나 이상 선택해 주세요.' });
+      return;
+    }
     setSending(true);
     setResult(null);
     try {
       const res = await fetch('/api/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, memo, items: cart, website: '' }),
+        body: JSON.stringify({
+          name,
+          phone,
+          memo,
+          hakdong: hakdong === 'yes',
+          area: hakdong === 'no' ? area : '',
+          days,
+          items: cart,
+          website: '',
+        }),
       });
       const json = await res.json();
       if (res.ok) {
@@ -127,6 +156,9 @@ export default function CartView({ books, sets, config }) {
                 <p className="hint">
                   신청은 구매 확정이 아닙니다. 마감 후 판매자가 신청자 중 구매자를 선정해 아래
                   연락처로 개별 연락드리며, 계좌이체 직거래로 진행됩니다.
+                  <br />
+                  거래 우선순위: <strong>① 세트 구매(전체 53권 세트 최우선) ② 단권 구매</strong>.
+                  신청자가 여러 명이면 <strong>학동역(7호선) 인근 직거래 가능한 분께 우선 판매</strong>됩니다.
                 </p>
                 <form onSubmit={submit}>
                   <div className="field">
@@ -151,6 +183,61 @@ export default function CartView({ books, sets, config }) {
                       pattern="01[0-9]-?[0-9]{3,4}-?[0-9]{4}"
                       placeholder="010-1234-5678"
                     />
+                  </div>
+                  <div className="field">
+                    <label>학동역(7호선) 인근 직거래가 가능하신가요? *</label>
+                    <div className="choicerow">
+                      <label>
+                        <input
+                          type="radio"
+                          name="hakdong"
+                          value="yes"
+                          checked={hakdong === 'yes'}
+                          onChange={() => setHakdong('yes')}
+                        />{' '}
+                        가능
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="hakdong"
+                          value="no"
+                          checked={hakdong === 'no'}
+                          onChange={() => setHakdong('no')}
+                        />{' '}
+                        불가능
+                      </label>
+                    </div>
+                  </div>
+                  {hakdong === 'no' && (
+                    <div className="field">
+                      <label htmlFor="area">거래 희망 지역 *</label>
+                      <input
+                        id="area"
+                        value={area}
+                        onChange={(e) => setArea(e.target.value)}
+                        maxLength={50}
+                        placeholder="예: 2호선 강남역 인근"
+                      />
+                      <p className="hint" style={{ marginTop: 6, marginBottom: 0 }}>
+                        신청자가 여러 명일 경우 학동역 인근 직거래 가능한 분께 우선 판매됩니다.
+                      </p>
+                    </div>
+                  )}
+                  <div className="field">
+                    <label>거래 가능 요일 * (7/20~7/26 중 선택)</label>
+                    <div className="choicerow">
+                      {DAY_OPTIONS.map((d) => (
+                        <label key={d}>
+                          <input
+                            type="checkbox"
+                            checked={days.includes(d)}
+                            onChange={() => toggleDay(d)}
+                          />{' '}
+                          {d}
+                        </label>
+                      ))}
+                    </div>
                   </div>
                   <div className="field">
                     <label htmlFor="memo">남기실 말씀 (선택)</label>
