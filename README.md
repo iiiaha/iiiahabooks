@@ -32,3 +32,5 @@ npm run dev
 
 로컬에서는 GITHUB_TOKEN 없이 `data/` 폴더 파일에 직접 저장됩니다.
 관리자 비밀번호 기본값: `dev-password`
+
+<!-- 마지막 배포 확인: 2026-07-11 -->
