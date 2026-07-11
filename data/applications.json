@@ -110,5 +110,25 @@
       }
     ],
     "total": 639000
+  },
+  {
+    "id": "app-1783733087387-nd3zah",
+    "createdAt": "2026-07-11T01:24:47.387Z",
+    "name": "최민영",
+    "phone": "01050939338",
+    "memo": "(익스텐션 구독자입니다 ㅎ)",
+    "hakdong": false,
+    "area": "",
+    "days": [],
+    "items": [
+      {
+        "type": "set",
+        "id": "set-annual",
+        "title": "애뉴얼 인테리어 디테일 전체 세트 (12권)",
+        "price": 449000,
+        "count": 12
+      }
+    ],
+    "total": 449000
   }
 ]
